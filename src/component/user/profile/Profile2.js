@@ -79,7 +79,7 @@ class Profile2 extends Component{
                                 <label className="form-control-label" for="input-displayName">Display name</label>
                                 <input type="text" id="input-displayName" name="displayName" className="form-control form-control-alternative"
                                   value={this.state.displayName}
-                                    onChange={(e) => this.setState({ displayName: e.target.value })}
+                                    
                                     disabled
                                 />
                               </div>
@@ -88,7 +88,7 @@ class Profile2 extends Component{
                               <div className="form-group">
                                 <label className="form-control-label" for="input-email">Email address</label>
                                 <input type="email" id="input-email" name="email" className="form-control form-control-alternative"
-                                  value={this.state.email} onChange={(e) => this.setState({ email: e.target.value })}
+                                  value={this.state.email}
                                   disabled
                                     
                                 />

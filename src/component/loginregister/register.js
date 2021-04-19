@@ -28,7 +28,7 @@ export default (props) => {
           return setUser( prev=>({...prev,displayName:displayName}))
         })
         .then(() => {
-          return firebase.firestore().collection("users").doc(firebase.auth().currentUser.uid).set({ displayName })
+          return firebase.firestore().collection("users").doc(firebase.auth().currentUser.uid).set({ displayName,email })
         })
         .then(() => {
           return firebase.firestore().collection("accessdetails").doc(email).set({

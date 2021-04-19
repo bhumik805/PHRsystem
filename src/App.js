@@ -9,9 +9,8 @@ import ManageReport from './component/user/reports/ManageReport'
 import PrivateRoute from './privateroute'
 import Preloader from './component/Preloader'
 import Logout from './component/loginregister/Logout'
-import ViewRepo from './component/user/reports/onereports'
 
-import {useContext , useState , useEffect} from 'react'
+import {useContext} from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
 import { UserinfoContext } from './providers/userprovider'
 

@@ -11,6 +11,7 @@ export default () => {
     firebase.auth().signOut()
       .then(() => {
         alert("logged out successfully")
+        window.location.href="/"
       })
       .finally(() => {
       setloading(false)

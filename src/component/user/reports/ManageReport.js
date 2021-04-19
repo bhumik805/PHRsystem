@@ -165,7 +165,7 @@ const ManageReport = (props) => {
         })
       })
       .then(() => {
-        alert(`${email} is removed`)
+        alert(`${email} is added`)
       })
       .catch((err) => {
         console.log(err)
