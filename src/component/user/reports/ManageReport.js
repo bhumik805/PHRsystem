@@ -159,7 +159,7 @@ const ManageReport = (props) => {
       accesstouid:firebase.firestore.FieldValue.arrayUnion(props.uid)
     })
       .then(() => {
-        firebase.firestore().collection("userID").doc(props.email).update({
+        firebase.firestore().collection("accessdetails").doc(props.email).update({
           requests: firebase.firestore.FieldValue.arrayRemove(email),
           hasaccess:firebase.firestore.FieldValue.arrayUnion(email)
         })

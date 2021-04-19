@@ -49,7 +49,9 @@
 .header_j7zky3{
   justify-content: flex-end !important;
 }
-
+._j7zky3{
+  justify-content: flex-end !important;
+}
 
 .reportbtns{
   display: flex;
