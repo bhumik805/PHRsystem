@@ -1,0 +1,40 @@
+/* .img {
+  height: 600px;
+  width: 400px;
+}
+.reportbody {
+  height: 128px;
+  overflow: auto;
+  overflow: -moz-scrollbars-none;
+  -ms-overflow-style: none;
+}
+.reportbody p{
+  margin-bottom: .75rem;
+}
+.reportbody::-webkit-scrollbar { 
+  width: 0 !important;
+  display: none; 
+}
+.card-text{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 15px;
+}
+.card-title{
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 20px;
+}
+@media (max-width: 992px){
+
+  .imgcont{
+    margin-top: 100px;
+  }
+}
+@media (min-width: 992px){
+  .imgcont{
+    margin-top: 140px;
+  }
+} */
+
+.header_j7zky3{
+  justify-content: flex-end !important;
+}

@@ -1,0 +1,91 @@
+.card{
+  margin: 5% 0%;
+  text-align: left;
+}
+
+.card-body{
+  margin: 0% 0% 0% 3%;
+  padding: 12px 0px;
+}
+
+@media (max-width: 992px){
+
+  .reportbtns button{
+    margin-right:2px ;
+  }
+}
+@media (min-width: 992px){
+
+  .reportbtns button{
+    margin-right: 15px;
+  }
+}
+.cardimg{
+  text-align: center;
+  padding: 10px 0px;
+}
+.card-img-top{
+  height: 300px;
+  width: 200px;
+}
+.deleicon{
+  position: absolute;
+  right: 2%;
+  bottom: 25%;
+}
+
+.deleicon button{
+  background-color: #5e72e4;
+  box-shadow: none;
+  
+}
+
+@media (min-width: 992px){
+.modal-lg, .modal-xl {
+    max-width: 670px;
+}
+}
+
+.header_j7zky3{
+  justify-content: flex-end !important;
+}
+
+
+.reportbtns{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.twobtns{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.nav-tabs .active{
+  color: black !important;
+}
+
+.editmodicon{
+  cursor: pointer;
+  margin-right: 3px;
+}
+
+.drpdwnlinks {
+  padding-right: 0.25rem;
+    display: inline-block;
+    width: 82%;
+}
+.emailremovebtn{
+  position: relative;
+  top: -1px;
+}
+.reportbody{
+  height: 124px;
+  overflow: auto;
+}
+.reportbody::-webkit-scrollbar {
+  width: 0;  /* Remove scrollbar space */
+  background: transparent;  /* Optional: just make scrollbar invisible */
+}

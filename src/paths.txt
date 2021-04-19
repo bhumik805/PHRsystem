@@ -1,0 +1,14 @@
+/
+/login
+/register
+
+/username/profile
+/username/edit
+/username/dashboard
+/username/reports
+/username/addreport/reportid
+/username/removereport/reportid
+/username/reportid
+/username/logout
+
+
