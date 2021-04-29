@@ -9,6 +9,9 @@ import ManageReport from './component/user/reports/ManageReport'
 import PrivateRoute from './privateroute'
 import Preloader from './component/Preloader'
 import Logout from './component/loginregister/Logout'
+import Footer from './component/home/footer'
+import Header2 from './component/home/header2'
+import Topbar from './component/home/topbar'
 
 import {useContext} from 'react'
 import { BrowserRouter, Switch, Route } from 'react-router-dom'
@@ -20,15 +23,25 @@ function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        {user.loading ? <Preloader text="Loading ..."/> : <Switch>
+        <div className="home">
+          <Topbar />
+          <Header2 />
+        </div>
+        <div className="mainbodymar">
+        {user.loading ? <Preloader text="Loading ..." /> :
+
+          <Switch>
           <Route path="/login" component={Login} />
           <Route path="/register" component={Register} />
           <PrivateRoute isauth={user.isAuthenticated} path="/profile" render={() => <Profile2 uid={user.uid} />} />
           <PrivateRoute isauth={user.isAuthenticated} path="/reports" render={() => <ManageReport uid={user.uid} email={ user.email }/>} />
           <PrivateRoute isauth={user.isAuthenticated} path="/logout" render={()=><Logout/>} />
           <PrivateRoute isauth={user.isAuthenticated} path="/" render={() => <Home isauth={user.isAuthenticated}/>} />
-        </Switch>
-        }
+            </Switch>
+         
+          }
+          </div>
+        <div className="home"><Footer /></div>
       </div>
     </BrowserRouter>
   )

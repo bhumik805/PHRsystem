@@ -32,29 +32,34 @@ const ManageReport = (props) => {
     return ()=>{unsub()}
   }, [props.uid]) 
   const addReport =(report, imageFiles) => {
-
-    for (let i = 0; i < imageFiles.length; i++) {
-      const uploadTask = storageref.child(`reports/${report.id}/${i + 1}`).put(imageFiles[i])
-      uploadTask.on('state_changed',
-        (snapshot) => {
-          var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
-          console.log('Upload is ' + progress + '% done');
-        },
-        (error) => {
-          console.log(error);
-        },
-        () => {
-          uploadTask.snapshot.ref.getDownloadURL().then((durl) => {
-            return firebase.firestore().collection("users").doc(props.uid).collection("reports").doc(report.id).update({
-              src: firebase.firestore.FieldValue.arrayUnion(durl)
-            }).catch((err) => console.log(err))
-          })
+    firebase.firestore().collection("users").doc(props.uid).collection("reports").doc(report.id).set(report)
+      .then(() => {
+        for (let i = 0; i < imageFiles.length; i++) {
+          const uploadTask = storageref.child(`reports/${report.id}/${i + 1}`).put(imageFiles[i])
+          uploadTask.on('state_changed',
+            (snapshot) => {
+              var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+              console.log('Upload is ' + progress + '% done');
+            },
+            (error) => {
+              console.log(error);
+            },
+            () => {
+              uploadTask.snapshot.ref.getDownloadURL().then((durl) => {
+                return firebase.firestore().collection("users").doc(props.uid).collection("reports").doc(report.id).update({
+                  src: firebase.firestore.FieldValue.arrayUnion(durl)
+                }).catch((err) => console.log(err))
+              })
+            }
+          )
         }
-      )
-    }
-    firebase.firestore().collection("users").doc(props.uid).collection("reports").doc(report.id).set(report).catch((err) => {
+      })
+      .catch((err) => {
       console.log(err);
+      return;
     })
+    
+    
   }
   const setCurrentValue = (val, index)=> {
 
@@ -181,13 +186,7 @@ const ManageReport = (props) => {
   }
 
     return ( 
-      <div>
-        <div className="home">
-          <Topbar />
-          <Header2 />
-          
-        </div>
-        <div className="mainbodymar">
+      <div className="reports"> 
           <div className="container-md">
             <div className="reportbtns">
               <div className="twobtns">
@@ -215,8 +214,7 @@ const ManageReport = (props) => {
             </div>
             <Reportpresent uid={props.uid} currentreportuid={currentreportuid} deleteReport={(rid,title)=>deleteReport(rid,title)}/>
           </div>
-        </div>
-        <div className="home"><Footer /></div>
+    
       </div>
 
     )

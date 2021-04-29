@@ -104,3 +104,5 @@ export default (props) => {
     </div>
   )
 }
+
+// || request.auth.token.email in get(/databases/$(database)/documents/accessdetails/$(emailofuser())).data.hasaccess

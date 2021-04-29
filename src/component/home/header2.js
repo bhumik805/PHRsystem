@@ -4,8 +4,9 @@ import { useContext } from 'react'
 import { UserinfoContext } from '../../providers/userprovider'
 
 const Header2 = (props) => {
+  
   const activelink = (link) => {
-    return link===props.match.url?"active":""
+    return link===props.location.pathname?"active":""
   }
   const [user] = useContext(UserinfoContext)
   return (

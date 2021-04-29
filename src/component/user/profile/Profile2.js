@@ -1,20 +1,17 @@
 import { Component } from 'react'
 import firebase from '../../../firebase'
-import Topbar from '../../home/topbar'
-import Header2 from '../../home/header2'
-import Footer from '../../home/footer'
 import Preloader from '../../Preloader'
 import "./profile.css"
 class Profile2 extends Component{
   state = {
-    displayName: "",
+    // displayName: "",
     firstName: "",
     lastName: "",
     phoneNumber: "",
     address: "",
     city: "",
     country: "",
-    postalCode: 0,
+    postalCode: "",
     bloodGroup: "",
     height: "",
     weight: "",
@@ -47,13 +44,10 @@ class Profile2 extends Component{
 
   render() {
     return (
-      <div className="minheight">
-      <div className="home">
-        <Topbar />
-        <Header2/>
-      </div>
+      <div className="profilecon">
+
         {this.state.deleting ?
-          <div className="profile mainbodymar">
+          <div className="profile">
           <div className="main-content">
             <div className="container" style={{ textAlign: "left" }}>
               <div className="row justify-content-center">
@@ -74,7 +68,7 @@ class Profile2 extends Component{
                         <h6 className="heading-small text-muted mb-4">User information</h6>
                         <div className="pl-lg-4">
                           <div className="row">
-                            <div className="col-lg-6">
+                            {/* <div className="col-lg-6">
                               <div className="form-group focused">
                                 <label className="form-control-label" for="input-displayName">Display name</label>
                                 <input type="text" id="input-displayName" name="displayName" className="form-control form-control-alternative"
@@ -83,7 +77,7 @@ class Profile2 extends Component{
                                     disabled
                                 />
                               </div>
-                            </div>
+                            </div> */}
                             <div className="col-lg-6">
                               <div className="form-group">
                                 <label className="form-control-label" for="input-email">Email address</label>
@@ -163,7 +157,7 @@ class Profile2 extends Component{
                             <div className="col-lg-4">
                               <div className="form-group">
                                 <label className="form-control-label" for="input-country">Postal code</label>
-                                <input type="number" id="input-postal-code" className="form-control form-control-alternative"
+                                <input type="text" id="input-postal-code" className="form-control form-control-alternative"
                                   name="postalCode"
                                   value={this.state.postalCode} onChange={(e) => this.setState({ postalCode: e.target.value })}
                                 />
@@ -252,7 +246,7 @@ class Profile2 extends Component{
 
         </div>
           : <Preloader text="Deleting your accont..."/>}
-        <div className="home"><Footer /></div>
+
       </div>
     )
   }

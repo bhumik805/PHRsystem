@@ -15,16 +15,25 @@
   height: 50px !important;
 }
 .mainbodymar{
-  min-height: 59vh;
+  min-height: 85vh;
+}
+.reports{
+  padding-bottom: 20px;
 }
 @media (max-width: 992px){
-  .mainbodymar{
-    margin-top: 120px ;
+  .reports{
+    padding-top: 120px ;
   } 
+  .profilecon{
+    padding-top: 120px ;
+  }
 }
 @media (min-width: 992px){
-  .mainbodymar{
-  margin-top: 160px;
+  .reports{
+  padding-top: 160px;
   }
-
+  .profilecon{
+    padding-top: 120px ;
+  }
 }
+

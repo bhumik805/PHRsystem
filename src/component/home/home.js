@@ -21,11 +21,8 @@ import Header2 from './header2'
 const home = (props) => {
   return (
     <div className="home">
-      <Topbar />
-      <Header2 />
       <Mainbody isAuthenticated={ props.isauth }/>
       <Contact />
-      <Footer />
     </div>
 
   )

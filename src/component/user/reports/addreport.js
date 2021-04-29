@@ -1,10 +1,11 @@
-import Fab from '@material-ui/core/Fab'
-import AddIcon from '@material-ui/icons/Add'
+
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 import Form from 'react-bootstrap/Form'
 import { useState } from 'react'
 import firebase from '../../../firebase'
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger'
+import Tooltip from 'react-bootstrap/Tooltip'
 import { uuid } from 'uuidv4'
 import "firebase/storage"
 
@@ -16,11 +17,15 @@ export default (props) => {
   const [reportDescription, setReportDescription] = useState("")
   const [reportTitle, setReportTitle] = useState("")
   const [reportid, setReportid] = useState(uuid())
-  const [date,setDate] = useState(()=>new Date())
+  const [date, setDate] = useState(() => new Date())
+  const [invalidFile,setInvalidfile] = useState("")
   // const reportRef = props.ref.doc(reportid)
   const addRe =  (e) => {
     e.preventDefault()
-    
+    if (!reportFiles) {
+      setInvalidfile("Invalid files")
+      return;
+    }
     const report={
       title: reportTitle,
       src : null,
@@ -32,7 +37,7 @@ export default (props) => {
       setReportFiles(null)
       setReportTitle("")
       setReportid(uuid())
-    setShowModal(false)
+      setShowModal(false)
     // console.log(reportFiles);
       props.add(report,reportFiles)
   }
@@ -43,6 +48,17 @@ export default (props) => {
     setReportid(()=>uuid())
     setDate(()=>new Date())
     setShowModal(false)
+  }
+  const reportFileSelect = (files) => {
+    const re = new RegExp("^image")
+    for (let i = 0; i < files.length; i++){
+      if (!re.test(files[i].type)) {
+        setInvalidfile("Invalid files")
+        return;
+      }
+    }
+    setReportFiles(files)
+    
   }
   return (
     <div>
@@ -68,7 +84,12 @@ export default (props) => {
           onSubmit={addRe} >
           <Modal.Body>
             <Form.Group>
-              <Form.File label="Select report" required onChange={(e) => setReportFiles(e.target.files)} multiple/>
+            <OverlayTrigger placement="bottom-end" overlay={
+                  <Tooltip>{invalidFile}</Tooltip>
+                }
+                  show={invalidFile ? true : false}>
+              <Form.File label="Select report" required onFocus={()=>setInvalidfile("")} onChange={(e) => reportFileSelect(e.target.files)} multiple/>
+              </OverlayTrigger>
             </Form.Group>
             <Form.Group>
               <Form.Label>Name of report</Form.Label>

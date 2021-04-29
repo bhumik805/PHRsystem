@@ -1,9 +1,40 @@
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /{document=**} {
-      allow read, write: if
-          request.time < timestamp.date(2021, 5, 2);
+
+    match /users/{userID} {
+
+      allow read: if request.auth.uid  == userID 
+      allow create: if request.auth.uid == userID
+          
+      match /reports/{reportID} {
+        
+        allow read: if request.auth.uid == userID || checkaccess()
+        allow create: if request.auth.uid == userID 
+
+        function checkaccess(){       
+          let email = get(/databases/$(database)/documents/users/$(userID)).data.email;
+          let con = request.auth.token.email in get(/databases/$(database)/documents/accessdetails/$(email)).data.hasaccess;
+          return con;
+        }
+      } 
     }
+
+    match /accessdetails/{email} {
+      allow read: if request.auth.token.email == email
+    }
+    match /accessdetails/{email} {
+      allow create: if request.auth.token.email == email
+      allow update: if request.auth != null && 
+        request.resource.data.diff(resource.data).affectedKeys()
+          .hasOnly(['accessto', 'accesstouid', 'requests']) && 
+      	(resource.data.accessto.toSet().union(request.resource.data.accessto.toSet()) == resource.data.accessto.toSet().union([request.auth.token.email].toSet()) ||
+        resource.data.accesstouid.toSet().union(request.resource.data.accesstouid.toSet()) == resource.data.accesstouid.toSet().union([request.auth.uid].toSet()) ||
+        resource.data.requests.toSet().union(request.resource.data.requests.toSet()) == resource.data.requests.toSet().union([request.auth.token.email].toSet()) 
+        )
+      allow update: if request.auth.token.email == email
+      allow delete: if request.auth.token.email == email
+    }
+
   }
 }
