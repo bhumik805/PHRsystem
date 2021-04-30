@@ -67,7 +67,7 @@ function Reportpresent(props) {
             <div className="card">
 
               <div className="view overlay cardimg" style={{ height: " 320px" }} onClick={() => { ViewReport(report.src, report.description) }}>
-                <img className="card-img-top" src={report.src && report.src[0]} alt="Card image cap" />
+                <img className="card-img-top" src={report.src && report.src[0]} alt="Report images" />
               </div>
 
               <div className="card-body reportbody">
