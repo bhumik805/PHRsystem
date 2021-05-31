@@ -48,7 +48,7 @@ export default (props) => {
           return firebase.firestore().collection("users").doc(firebase.auth().currentUser.uid).set({ uid:firebase.auth().currentUser.uid, email:firebase.auth().currentUser.email })
         })
         .then(() => {
-          return firebase.firestore().collection("accessdetails").doc(firebase.auth().currentUser.uid).set({
+          return firebase.firestore().collection("accessdetails").doc(firebase.auth().currentUser.email).set({
             accessto: [],
             accesstouid: [],
             hasaccess: [],

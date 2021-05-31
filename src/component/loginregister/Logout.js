@@ -5,8 +5,6 @@ import {CircularProgress} from '@material-ui/core'
 
 export default () => {
   const [loading, setloading] = useState(true)
-
-  console.log("in logout");
   useEffect(() => {
     firebase.auth().signOut()
       .then(() => {
